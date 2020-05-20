@@ -4,6 +4,7 @@
 #include"game.h"
 #include<QPainter>
 
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
