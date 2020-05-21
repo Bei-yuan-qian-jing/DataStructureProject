@@ -16,12 +16,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cow.cpp \
     game.cpp \
+    grass.cpp \
+    initworld.cpp \
+    listcow.cpp \
+    listsheep.cpp \
+    listtiger.cpp \
     main.cpp \
+    sheep.cpp \
+    tiger.cpp \
     widget.cpp
 
 HEADERS += \
+    cow.h \
     game.h \
+    grass.h \
+    initworld.h \
+    listcow.h \
+    listsheep.h \
+    listtiger.h \
+    sheep.h \
+    tiger.h \
     widget.h
 
 FORMS += \
