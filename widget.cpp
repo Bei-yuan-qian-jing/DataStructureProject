@@ -131,7 +131,7 @@ void Widget::paintEvent(QPaintEvent *) {
                 switch (specie[i][j]) {
                 // sheep
                 case 1: case 2: case 3:
-                    pen.setColor(Qt::red);
+                    pen.setColor(Qt::black);
                     painter.setPen(pen);
                     painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
                     break;
@@ -142,7 +142,7 @@ void Widget::paintEvent(QPaintEvent *) {
                     painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
                     break;
                 case 7: case 8:
-                    pen.setColor(Qt::black);
+                    pen.setColor(Qt::red);
                     painter.setPen(pen);
                     painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
                 }

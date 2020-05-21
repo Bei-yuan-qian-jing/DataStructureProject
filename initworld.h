@@ -14,7 +14,7 @@ used for store the coordinates of cow, tiger and sheep
 0 represent no animal
 1,2,3 represent sheep's three states: kid, adult, old
 4,5,6 represent cow's three states
-7, 8represent tiger's male and female
+7, 8 represent tiger's male and female
 
 */
 
