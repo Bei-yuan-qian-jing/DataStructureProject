@@ -1,6 +1,6 @@
 #include "listsheep.h"
 #include<iostream>
-
+#include<cstring>
 Listsheep::Listsheep(int x,int y)
 {
     Sheep h(x,y);
@@ -9,7 +9,7 @@ Listsheep::Listsheep(int x,int y)
     setBirth(0);
     setProductivity(5);
     setGrassContent(5);
-    memset(direction,0,sizeof(direction));
+    std::memset(direction,0,sizeof(direction));
 }
 
 void Listsheep::appendList(Sheep c){

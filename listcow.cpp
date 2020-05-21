@@ -1,5 +1,6 @@
 #include "listcow.h"
 #include<iostream>
+#include<cstring>
 
 Listcow::Listcow(int x,int y)
 {

@@ -87,8 +87,7 @@ void Widget::paintEvent(QPaintEvent *) {
 
     brush.setStyle(Qt::Dense6Pattern);
     painter.setBrush(brush);
-    painter.translate(30, 30);
-    painter.drawRect(QRect(0, 0, 600, 600));
+    painter.drawRect(QRect(30, 20, 600, 600));
 
     brush.setColor(Qt::green);
     brush.setStyle(Qt::SolidPattern);
@@ -115,8 +114,8 @@ void Widget::paintEvent(QPaintEvent *) {
 //        }
 //    }
 
+    painter.translate(30, 30);
     painter.setPen(pen);
-
     //paint the grass
     for(int i = 0; i < maxn; i++) {
         for(int j = 0; j < maxn; j++) {
