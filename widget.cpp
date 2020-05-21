@@ -14,14 +14,13 @@ Widget::Widget(QWidget *parent)
 
     setWindowTitle("Ecosytem");
     setFixedSize(1000, 800);
-    myGame = new Game();
+    myGame = new gameControl();
 
     timer = new QTimer(this);
 
     // timeout
     connect(timer, &QTimer::timeout, [=](){
-        this->myGame->nexterm();
-//        myGame->show();
+        this->myGame->nextTurn();
     });
 
     // draw the board
@@ -44,7 +43,8 @@ void Widget::on_Start_clicked()
     int cow_num = ui->Cow_num->value();
     int sheep_num = ui->Sheep_num->value();
     int tiger_num = ui->Tiger_num->value();
-//    qDebug() << grass_num << " " << cow_num << " " << sheep_num << " " << tiger_num << endl;
+
+    std::cout << grass_num << " " << cow_num << " " << sheep_num << " " << tiger_num << std::endl;
 
     myGame->init(grass_num, cow_num, sheep_num, tiger_num);
     timer->start(this->timeinterval);
@@ -55,8 +55,6 @@ void Widget::on_dial_valueChanged(int value)
 {
     this->timeinterval = value;
     ui->Move_Speed->setValue(value);
-//    std::cout << this->timeinterval << std::endl;
-   // std::cout << ui->Move_Speed->value() << std::endl;
 
     // change the speed of the movement dynamicly.
      if(timer->isActive())
@@ -67,7 +65,6 @@ void Widget::on_dial_valueChanged(int value)
 void Widget::on_Stop_clicked()
 {
     timer->stop();
-   // std::cout << timer->isActive() << std::endl;
 }
 
 void Widget::on_Continue_clicked()
@@ -83,6 +80,10 @@ void Widget::on_End_clicked()
 void Widget::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     QBrush brush(Qt::cyan);
+    QPen pen(Qt::green);
+    painter.setBrush(brush);
+
+
     brush.setStyle(Qt::Dense6Pattern);
     painter.setBrush(brush);
     painter.translate(30, 30);
@@ -98,17 +99,53 @@ void Widget::paintEvent(QPaintEvent *) {
 //    painter.drawEllipse(500, 500, 40, 20);
 //    painter.drawRect(QRect(200, 400, 20, 40));
 
+//    for(int i = 0; i < maxn; i++) {
+//        for(int j = 0; j < maxn; j++) {
+//            switch (myGame->board[i][j]) {
+//            // grass
+//            case 1 : painter.drawPie(i * 5, j * 5, 20, 20, 45 * 16, 90 * 16); break;
+//            // cow
+//            case 2 : painter.drawEllipse(i * 5, j * 5, 12, 12); break;
+//            // sheep
+//            case 3 : painter.drawEllipse(i * 5, j * 5, 16, 8); break;
+//            //tiger
+//            case 4 : painter.drawRect(QRect(i * 5, j * 5, 10, 10)); break;
+//            }
+//        }
+//    }
+
+    painter.setPen(pen);
+
+    //paint the grass
     for(int i = 0; i < maxn; i++) {
         for(int j = 0; j < maxn; j++) {
-            switch (myGame->board[i][j]) {
-            // grass
-            case 1 : painter.drawPie(i * 5, j * 5, 20, 20, 45 * 16, 90 * 16); break;
-            // cow
-            case 2 : painter.drawEllipse(i * 5, j * 5, 12, 12); break;
-            // sheep
-            case 3 : painter.drawEllipse(i * 5, j * 5, 16, 8); break;
-            //tiger
-            case 4 : painter.drawRect(QRect(i * 5, j * 5, 10, 10)); break;
+            if(grassa[i][j])
+                painter.drawText(i * 6, j * 6, QString::number(grassa[i][j]));
+        }
+    }
+
+    //paint the specise
+    for(int i = 0; i < maxn; i++) {
+        for(int j = 0; j < maxn; j++) {
+            if(specie[i][j]){
+                switch (specie[i][j]) {
+                // sheep
+                case 1: case 2: case 3:
+                    pen.setColor(Qt::red);
+                    painter.setPen(pen);
+                    painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
+                    break;
+                 // cow
+                case 4: case 5: case 6:
+                    pen.setColor(Qt::blue);
+                    painter.setPen(pen);
+                    painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
+                    break;
+                case 7: case 8:
+                    pen.setColor(Qt::black);
+                    painter.setPen(pen);
+                    painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
+                }
             }
         }
     }

@@ -161,7 +161,7 @@
      <item row="1" column="0">
       <widget class="QSpinBox" name="Grass_num">
        <property name="maximum">
-        <number>100</number>
+        <number>10000</number>
        </property>
        <property name="value">
         <number>10</number>
@@ -171,7 +171,7 @@
      <item row="1" column="1">
       <widget class="QSpinBox" name="Cow_num">
        <property name="maximum">
-        <number>100</number>
+        <number>10000</number>
        </property>
        <property name="value">
         <number>10</number>
@@ -181,7 +181,7 @@
      <item row="1" column="2">
       <widget class="QSpinBox" name="Sheep_num">
        <property name="maximum">
-        <number>100</number>
+        <number>10000</number>
        </property>
        <property name="value">
         <number>10</number>
@@ -191,7 +191,7 @@
      <item row="1" column="3">
       <widget class="QSpinBox" name="Tiger_num">
        <property name="maximum">
-        <number>100</number>
+        <number>500</number>
        </property>
        <property name="value">
         <number>10</number>
@@ -231,6 +231,9 @@
    <property name="singleStep">
     <number>0</number>
    </property>
+   <property name="value">
+    <number>1000</number>
+   </property>
   </widget>
   <widget class="QProgressBar" name="Move_Speed">
    <property name="geometry">
@@ -251,7 +254,7 @@
     <number>1500</number>
    </property>
    <property name="value">
-    <number>100</number>
+    <number>997</number>
    </property>
    <property name="textVisible">
     <bool>true</bool>

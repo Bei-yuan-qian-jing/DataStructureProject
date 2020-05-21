@@ -3,10 +3,21 @@
 #include<game.h>
 #include <QWidget>
 #include<QTimer>
+#include<gamecontrol.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
+
+
+extern int specie[100][100];
+extern int grassa[100][100];
+extern int row,column;
+extern int move1[4][2];
+extern int move2[12][2];
+extern bool checkBoard(int x,int y);
+extern int fourmax(int x, int y);
+
 
 class Widget : public QWidget
 {
@@ -31,7 +42,8 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    Game * myGame;
+   // Game * myGame;
+    gameControl * myGame;
     int timeinterval;
     QTimer * timer;
 };
