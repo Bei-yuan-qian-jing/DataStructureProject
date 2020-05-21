@@ -7,14 +7,15 @@ extern int row,column;
 extern int move1[4][2];
 extern int move2[12][2];
 extern bool checkBoard(int x,int y);
-extern int fourmax(int x, int y);
+extern int fourmax(int x_minus, int y_minus, int x, int y);
+
 class Sheep//similar to cow, only different in some value
 {
 private:
     int starvationValue;//0-5. 0-1:full, 2-3:hungry, 4 extreme hungry, 5:die
     int health;//0-25. 25-21: kid, 20-6: adult, 5-1: old, 0: die
     int x,y;
-    int sheepDirection[2];//used to record the trend of sheep
+    int sheepDirection[4];//used to record the trend of sheep
     bool findEnemy=0;
 
 	//---------self defined value---------
@@ -35,6 +36,8 @@ public:
     int eat();//eat grass from herd's grassContent
     int update();
     //used for view surrending 12 locations, check grass or tiger and finally choose a direction and upload to herd
+    void addx(int x);
+    void addy(int y);
 
     int reproduction();
     //check if surrending 4 locations has an empty one and return the number.
@@ -52,7 +55,7 @@ public:
     int getY() const;
     void setY(int value);
 
-    void setSheepDirection(int x, int y);
+    void setSheepDirection(int minus_x, int minus_y,int x, int y);
     bool getFindEnemy() const;
     void setFindEnemy(bool value);
 };

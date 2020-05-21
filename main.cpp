@@ -1,5 +1,5 @@
 #include "widget.h"
-#include<bits/stdc++.h>
+#include<iostream>
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -15,7 +15,7 @@ Sheep::Sheep(int x,int y){
 
     setHealth(kidhealth);
     setStarvationValue(0);
-    setSheepDirection(0,0);
+    setSheepDirection(0,0,0,0);
     setX(x);
     setY(y);
 	specie[x][y] = 1;
@@ -56,6 +56,7 @@ int Sheep::update(){
         return the dirction having the bigger value
         */
     int newx,newy;
+    setSheepDirection(0,0,0,0);
     for(int i = 0;i <= 11 ; i++){
         newx = x+move2[i][0];
         newy = y+move2[i][1];
@@ -64,19 +65,35 @@ int Sheep::update(){
             if(grassa[newx][newy]>0)
                         {
                 //find the grass
-                sheepDirection[0]+=weigh[move2[i][0]+2];
-                sheepDirection[1]+=weigh[move2[i][1]+2];
+                addx(weigh[move2[i][0]+2]);
+                addy(weigh[move2[i][1]+2]);
             }
             if(specie[newx][newy]==7||specie[newx][newy]==8)
             {
                 //find the tiger
-                sheepDirection[0]-=5*weigh[move2[i][0]+2];
-                sheepDirection[1]-=5*weigh[move2[i][0]+2];
+                addx(-3*weigh[move2[i][0]+2]);
+                addy(-3*weigh[move2[i][1]+2]);
                 setFindEnemy(1);
-                }
-                }
-    }
-    return fourmax(sheepDirection[0],sheepDirection[1]);
+            }
+    }}
+        setSheepDirection(0,0,0,0);
+        return fourmax(sheepDirection[0],sheepDirection[1],sheepDirection[2],sheepDirection[3]);
+}
+
+void Sheep::addx(int x)
+{
+    if(x>0)
+        sheepDirection[2]+=x;
+    if(x<0)
+        sheepDirection[0]-=x;
+}
+
+void Sheep::addy(int y)
+{
+    if(y>0)
+        sheepDirection[3]+=y;
+    if(y<0)
+        sheepDirection[1]-=y;
 }
 
 int Sheep::eat(){
@@ -176,8 +193,10 @@ void Sheep::setY(int value)
     y = value;
 }
 
-void Sheep::setSheepDirection(int x, int y)
+void Sheep::setSheepDirection(int minus_x, int minus_y,int x, int y)
 {
-    sheepDirection[0] = x;
-    sheepDirection[1] = y;
+    sheepDirection[0] = minus_x;
+    sheepDirection[1] = minus_y;
+    sheepDirection[2] = x;
+    sheepDirection[3] = y;
 }

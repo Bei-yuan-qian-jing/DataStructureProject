@@ -8,6 +8,7 @@ gameControl::gameControl(QObject *parent) : QObject(parent)
 
 void gameControl::initGrass(int GrassNumber)
 {
+
     for (int i = 0; i < 100; i++) {
         for (int j = 0; j < 100; j++) {
             grassList[i][j] =new Grass(i, j);
@@ -16,7 +17,6 @@ void gameControl::initGrass(int GrassNumber)
     /*
     randomly initialize the grass, the size of the map can be changed
     */
-    srand(time(NULL));
     for (int i = 0; i < GrassNumber; i++)
     {
         int a = rand() % 100;
@@ -40,13 +40,12 @@ void gameControl::initTiger(int tigerNumber)
         int a = rand() % 100;
         int b = rand() % 100;
         if (specie[a][b] != 0)continue;
-        int c = rand() % 2;
+
         int check = 0;
         for (int i =  (a - tigerView >= 0) ? (a - tigerView) : 0 ; i < ((a + tigerView < 100) ? (a + tigerView) : 99); i++)
         {
             for (int j = ((b - tigerView >= 0) ? (b - tigerView) : 0 ); j < ((b + tigerView < 100) ? (b + tigerView) :99); j++)
             {
-                //cout << i <<" "<< j <<" "<< specie[i][j]<<endl;
                 if (specie[i][j] == 7 || specie[i][j] == 8) {
                     check=1;
                     break;
@@ -57,8 +56,6 @@ void gameControl::initTiger(int tigerNumber)
         if (check==0) {
             int sex = rand() % 2;
             tigerlist.append(Tiger(a, b, sex));
-            //cout << a << " " << b << endl;
-            //cout << specie[a][b] << endl;
             temp--;
         }
 
@@ -73,7 +70,6 @@ void gameControl::initCow(int CowherdNumber)
     */
     int temp = CowherdNumber;
     int cnt = 0;
-    srand(time(NULL));
     while (temp)
     {
         int a = rand() % 100 ;
@@ -85,7 +81,7 @@ void gameControl::initCow(int CowherdNumber)
             for (int j =  ((b - herdView >= 0) ? (b - herdView) : 0) ; j < ((b + herdView < 100) ? (b + herdView) : 99)
         ; j++)
             {
-                //cout << i << " " << j << " " << specie[i][j] << endl;
+
                 if (specie[i][j] == 7 || specie[i][j] == 8)
                 {
                     check = 1;
@@ -98,8 +94,7 @@ void gameControl::initCow(int CowherdNumber)
         if (check == 0) {
             cowlist.push_back(Listcow(a, b));
             cnt++;
-            //cout << a << " " << b << endl;
-            //cout << specie[a][b]<<endl;
+
             temp--;
 
         }
@@ -114,7 +109,6 @@ void gameControl::initsheep(int SheepherdNumber)
     */
     int temp = SheepherdNumber;
     int cnt = 0;
-    srand(time(NULL));
     while (temp)
     {
         int a = rand() % 100;
@@ -127,7 +121,7 @@ void gameControl::initsheep(int SheepherdNumber)
             for (int j = ((b - herdView >= 0) ? (b - herdView) : 0); j < ((b + herdView < 100) ? (b + herdView) : 99)
                 ; j++)
             {
-                //cout << i << " " << j << " " << specie[i][j] << endl;
+
                 if (specie[i][j] == 7 || specie[i][j] == 8)
                 {
                     check = 1;
@@ -141,8 +135,6 @@ void gameControl::initsheep(int SheepherdNumber)
             sheeplist.push_back( Listsheep(a, b));
             cnt++;
             temp--;
-            //cout << specie[a][b] << endl;
-            //cout << a << " " << b << endl;
 
         }
     }
@@ -151,10 +143,16 @@ void gameControl::initsheep(int SheepherdNumber)
 
 void gameControl::init(int GrassNumber, int CowherdNumber, int SheepHerdNumber, int TigerNumber)
 {
+    memset(specie,0,sizeof(specie));
+    memset(grassa,0,sizeof(specie));
+    cowlist.clear();
+    sheeplist.clear();
+    tigerlist.cleartiger();
     grassNum = GrassNumber;
     cowherdNum = CowherdNumber;
     sheepherdNum = SheepHerdNumber;
     tigerNum = TigerNumber;
+    srand(time(NULL));
     initGrass(GrassNumber);
     initTiger(TigerNumber);
     initCow(CowherdNumber);

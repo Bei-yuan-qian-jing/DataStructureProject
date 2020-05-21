@@ -21,7 +21,7 @@ bool Tiger::eat()
 	*/ 
     int target=-1;
     int newx,newy;
-    int type;
+    int type=0;
     for(int i = 0;i<4;i++){
         newx = getX()+move1[i][0];
         newy = getY()+move1[i][1];

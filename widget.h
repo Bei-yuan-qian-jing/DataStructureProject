@@ -16,8 +16,7 @@ extern int row,column;
 extern int move1[4][2];
 extern int move2[12][2];
 extern bool checkBoard(int x,int y);
-extern int fourmax(int x, int y);
-
+extern int fourmax(int x_minus, int y_minus, int x, int y);
 
 class Widget : public QWidget
 {

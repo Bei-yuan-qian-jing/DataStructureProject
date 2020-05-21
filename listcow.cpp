@@ -1,5 +1,5 @@
 #include "listcow.h"
-#include<bits/stdc++.h>
+#include<iostream>
 
 Listcow::Listcow(int x,int y)
 {
@@ -29,6 +29,7 @@ bool Listcow::traverse()
 	one traverse of a herd of cow
 	*/
     int dir = updatedir();
+    memset(direction,0,sizeof(direction));
 	c1 = clist.begin();
     while(c1!=clist.end())
 	{
@@ -50,14 +51,14 @@ bool Listcow::traverse()
 			setGrassContent(getGrassContent() - c1->eat());
         int j= c1->update();
         if(c1->getFindEnemy()){
-            direction[0]+=5*move1[j][0];
-            direction[1]+=5*move1[j][1];
+            addx(-sentivityToTiger*move1[j][0]);
+            addy(-sentivityToTiger*move1[j][1]);
             c1->setFindEnemy(0);
         }
         else
 		{
-            direction[0]+=move1[j][0];
-            direction[1]+=move1[j][1];
+            addx(move1[j][0]);
+            addy(move1[j][1]);
         }
 
         if(getBirth()>0){
@@ -85,7 +86,7 @@ int Listcow::updatedir()
 		productivity -= ProReproNeeded;
 
 	}
-    return fourmax(direction[0],direction[1]);
+    return fourmax(direction[0],direction[1],direction[2],direction[3]);
 }
 
 
@@ -134,4 +135,19 @@ int Listcow::getGrassContent() const
 void Listcow::setGrassContent(int value)
 {
     grassContent = value;
+}
+void Listcow::addx(int x)
+{
+    if(x>0)
+        direction[2]+=x;
+    if(x<0)
+        direction[0]-=x;
+}
+
+void Listcow::addy(int y)
+{
+    if(y>0)
+        direction[3]+=y;
+    if(y<0)
+        direction[1]-=y;
 }

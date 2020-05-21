@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include <QObject>
-#include<bits/stdc++.h>
+#include<iostream>
 const int maxn = 100;
 
 class Game : public QObject

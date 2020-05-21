@@ -1,6 +1,6 @@
 #include "grass.h"
 #include<iostream>
-Grass::Grass(int X = 0, int Y = 0)
+Grass::Grass(int X , int Y )
 {
 	x = X;
 	y = Y;
@@ -36,7 +36,7 @@ void Grass::reproduction()
         newy = y+move1[i][1];
         if(checkBoard(newx, newy)){
 			if (grassa[newx][newy] == 0) {
-				if (rand() % 10 < prob) {
+                if (rand() % 10 < prob) {
 					grassa[newx][newy] = 10;
 
 				}

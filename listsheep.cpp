@@ -1,5 +1,5 @@
 #include "listsheep.h"
-#include<bits/stdc++.h>
+#include<iostream>
 
 Listsheep::Listsheep(int x,int y)
 {
@@ -28,6 +28,7 @@ bool Listsheep::traverse()
         one traverse of a herd of sheep
         */
     int dir = updatedir();
+    memset(direction,0,sizeof(direction));
 	s1 = slist.begin();
     while(s1!=slist.end()){
 		// std::cout << "S  health: " << s1->getHealth() << " star: " << s1->getStarvationValue() << " state: " << specie[s1->getX()][s1->getY()] <<" content: "<<getGrassContent()<< std::endl;
@@ -46,14 +47,16 @@ bool Listsheep::traverse()
             grassContent-=s1->eat();
         int j= s1->update();
         if(s1->getFindEnemy()){
-            direction[0]+=sentivityToTiger*move1[j][0];
-            direction[1]+=sentivityToTiger*move1[j][1];
+            addx(-sentivityToTiger*move1[j][0]);
+            addy(-sentivityToTiger*move1[j][1]);
             s1->setFindEnemy(0);
         }
-        else{
-            direction[0]+=move1[j][0];
-            direction[1]+=move1[j][1];
+        else
+        {
+            addx(move1[j][0]);
+            addy(move1[j][1]);
         }
+
         if(getBirth()>0){
             int i = s1->reproduction();
             if(i>=0){
@@ -79,7 +82,7 @@ int Listsheep::updatedir()
         birth++;
         productivity-=ProReproNeeded;
     }
-    return fourmax(direction[0],direction[1]);
+    return fourmax(direction[0],direction[1],direction[2],direction[3]);
 }
 
 
@@ -127,4 +130,19 @@ int Listsheep::getGrassContent() const
 void Listsheep::setGrassContent(int value)
 {
     grassContent = value;
+}
+void Listsheep::addx(int x)
+{
+    if(x>0)
+        direction[2]+=x;
+    if(x<0)
+        direction[0]-=x;
+}
+
+void Listsheep::addy(int y)
+{
+    if(y>0)
+        direction[3]+=y;
+    if(y<0)
+        direction[1]-=y;
 }

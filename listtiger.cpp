@@ -1,5 +1,5 @@
 #include "listtiger.h"
-#include<bits/stdc++.h>
+#include<iostream>
 
 
 Listtiger::Listtiger(int Size)
@@ -51,7 +51,13 @@ bool Listtiger::traverse()
 
 bool Listtiger::checkempty()
 {
-	return tlist.empty();
+    return tlist.empty();
+}
+
+void Listtiger::cleartiger()
+{
+    setSize(0);
+    tlist.clear();
 }
 
 void Listtiger::append(Tiger t)

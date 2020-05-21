@@ -1,5 +1,5 @@
 #include "game.h"
-#include <bits/stdc++.h>
+#include <iostream>
 
 Game::Game(QObject *parent) : QObject(parent)
 {

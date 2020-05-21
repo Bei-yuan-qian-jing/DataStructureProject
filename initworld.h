@@ -40,8 +40,8 @@ int move3[24][2]={{-1,0},{1,0},{0,-1},{0,1},{-2,0},{2,0},{0,-2},{0,2},
 bool checkBoard(int x,int y);
 //used for check if the new cooridinate(x, y) is exceed the range of world
 
-int fourmax(int x, int y);
-/*x,y represent 4 values(x == -1 represent left 1) in x,y dirsction,
+int fourmax(int x_minus, int y_minus, int x, int y);
+/*
     return the largest one of 4 directions. */
 
 #endif // INITWORLD_H

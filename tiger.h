@@ -8,8 +8,7 @@ extern int move1[4][2];
 extern int move2[12][2];
 extern int move3[24][2];
 extern bool checkBoard(int x,int y);
-extern int fourmax(int x, int y);
-
+extern int fourmax(int x_minus, int y_minus, int x, int y);
 class Tiger
 {
 private:
@@ -25,7 +24,7 @@ private:
 
 
 	//---------self defined value---------
-	const int successRate[4] = { 8,7,4,5 };
+    const int successRate[4] = { 9,8,7,6 };
 	//possibilty to hunt a kid or old cow:80%
 	//possibilty to hunt a kid or old sheep:70%
 	//possibilty to hunt a adult sheep:40%
@@ -33,9 +32,9 @@ private:
 	int weigh[5] = { -1,-3,0,3,1 };//when dis is 1, 2, the weigh is 3, 1
 	int kidhealth = 60;//refer to health value and starvation value
 	int adulthealth = 50;
-	int oldhealth = 10;
+    int oldhealth = 10;
 	int fullStar = 5;
-	int hungryStar = 20;
+    int hungryStar = 15;
 	//---------self defined value---------
 
 

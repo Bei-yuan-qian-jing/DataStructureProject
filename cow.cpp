@@ -6,7 +6,7 @@ Cow::Cow(int x,int y){
 
     setHealth(kidhealth);
     setStarvationValue(0);
-    setCowDirection(0,0);
+    setCowDirection(0,0,0,0);
 	setFindEnemy(0);
     setX(x);
     setY(y);
@@ -48,6 +48,7 @@ int Cow::update(){
         return the dirction having the bigger value
         */
     int newx,newy;
+    setCowDirection(0,0,0,0);
     for(int i = 0;i <= 11 ; i++){
         newx = x+move2[i][0];
         newy = y+move2[i][1];
@@ -56,19 +57,36 @@ int Cow::update(){
             if(grassa[newx][newy]>0)
                         {
                 //find the grass
-                cowDirection[0]+=weigh[move2[i][0]+2];
-                cowDirection[1]+=weigh[move2[i][1]+2];
+                addx(weigh[move2[i][0]+2]);
+                addy(weigh[move2[i][1]+2]);
             }
             if(specie[newx][newy]==7||specie[newx][newy]==8)
             {
                 //find the tiger
-                cowDirection[0]-=5*weigh[move2[i][0]+2];
-                cowDirection[1]-=5*weigh[move2[i][0]+2];
+                addx(-3*weigh[move2[i][0]+2]);
+                addy(-3*weigh[move2[i][1]+2]);
                 setFindEnemy(1);
             }
         }
     }
-    return fourmax(cowDirection[0],cowDirection[1]);
+    setCowDirection(0,0,0,0);
+    return fourmax(cowDirection[0],cowDirection[1],cowDirection[2],cowDirection[3]);
+}
+
+void Cow::addx(int x)
+{
+    if(x>0)
+        cowDirection[2]+=x;
+    if(x<0)
+        cowDirection[0]-=x;
+}
+
+void Cow::addy(int y)
+{
+    if(y>0)
+        cowDirection[3]+=y;
+    if(y<0)
+        cowDirection[1]-=y;
 }
 
 
@@ -178,8 +196,10 @@ void Cow::setY(int value)
     y = value;
 }
 
-void Cow::setCowDirection(int x, int y)
+void Cow::setCowDirection(int minus_x, int minus_y,int x, int y)
 {
-    cowDirection[0] = x;
-    cowDirection[1] = y;
+    cowDirection[0] = minus_x;
+    cowDirection[1] = minus_y;
+    cowDirection[2] = x;
+    cowDirection[3] = y;
 }

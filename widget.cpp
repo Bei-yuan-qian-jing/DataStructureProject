@@ -20,6 +20,7 @@ Widget::Widget(QWidget *parent)
 
     // timeout
     connect(timer, &QTimer::timeout, [=](){
+        srand(time(NULL));
         this->myGame->nextTurn();
     });
 
