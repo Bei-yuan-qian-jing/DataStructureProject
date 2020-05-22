@@ -48,6 +48,7 @@ void Widget::on_Start_clicked()
     std::cout << grass_num << " " << cow_num << " " << sheep_num << " " << tiger_num << std::endl;
 
     myGame->init(grass_num, cow_num, sheep_num, tiger_num);
+    this->timeinterval = ui->Move_Speed->value();
     timer->start(this->timeinterval);
 }
 
@@ -58,8 +59,7 @@ void Widget::on_dial_valueChanged(int value)
     ui->Move_Speed->setValue(value);
 
     // change the speed of the movement dynamicly.
-     if(timer->isActive())
-         timer->setInterval(this->timeinterval);
+    timer->setInterval(this->timeinterval);
 
 }
 
@@ -76,6 +76,8 @@ void Widget::on_Continue_clicked()
 void Widget::on_End_clicked()
 {
     timer->stop();
+    myGame->init(0,0,0,0);
+    update();
 }
 
 void Widget::paintEvent(QPaintEvent *) {
@@ -139,6 +141,7 @@ void Widget::paintEvent(QPaintEvent *) {
                 case 4: case 5: case 6:
                     pen.setColor(Qt::blue);
                     painter.setPen(pen);
+
                     painter.drawText(i * 6, j * 6, QString::number(specie[i][j]));
                     break;
                 case 7: case 8:

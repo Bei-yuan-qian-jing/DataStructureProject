@@ -118,10 +118,30 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_3">
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="Cow_num">
+       <property name="maximum">
+        <number>500</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="Sheep_num">
+       <property name="maximum">
+        <number>500</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Sheep</string>
+        <string>Grass</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -138,16 +158,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Grass</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QLabel" name="label_2">
        <property name="text">
@@ -158,30 +168,20 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Sheep</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <widget class="QSpinBox" name="Grass_num">
        <property name="maximum">
-        <number>10000</number>
-       </property>
-       <property name="value">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="Cow_num">
-       <property name="maximum">
-        <number>10000</number>
-       </property>
-       <property name="value">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QSpinBox" name="Sheep_num">
-       <property name="maximum">
-        <number>10000</number>
+        <number>2000</number>
        </property>
        <property name="value">
         <number>10</number>
@@ -191,7 +191,7 @@
      <item row="1" column="3">
       <widget class="QSpinBox" name="Tiger_num">
        <property name="maximum">
-        <number>500</number>
+        <number>100</number>
        </property>
        <property name="value">
         <number>10</number>
@@ -232,7 +232,7 @@
     <number>0</number>
    </property>
    <property name="value">
-    <number>1000</number>
+    <number>500</number>
    </property>
   </widget>
   <widget class="QProgressBar" name="Move_Speed">
@@ -254,7 +254,7 @@
     <number>2000</number>
    </property>
    <property name="value">
-    <number>997</number>
+    <number>500</number>
    </property>
    <property name="textVisible">
     <bool>true</bool>
