@@ -18,9 +18,9 @@ private:
     bool findEnemy=0;
 
 	//---------self defined value---------
-	int weigh[5] = { -1,-3,0,3,1 };//when dis is 1, 2, the weigh is 3, 1
-	int kidhealth = 40;//refer to health value and starvation value
-	int adulthealth = 30;
+    int weigh[5] = { -1,-3,0,3,1 }; //when dis is 1, 2, the weigh is 3, 1
+    int kidhealth = 40; // the initial health value of the new born baby cow
+    int adulthealth = 30; // dividing line between the health value of baby cow and adult cow
 	int oldhealth = 10;
 	int fullStar = 1;
 	int hungryStar = 3;
@@ -31,7 +31,7 @@ public:
 
     Cow(int x,int y);
 
-    bool live() ;//excute in each cycle,change the state, return live or die
+    bool live();//excute in each cycle,change the state, return live or die
     bool add();// check if grass is in its direction.
     int eat();//eat grass from herd's grassContent
     int update();

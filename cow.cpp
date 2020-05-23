@@ -16,14 +16,18 @@ Cow::Cow(int x,int y){
 
 bool Cow::live(){
 	/*
-	check whether the cow is alive
+        execute every round, change the state of the cow and judge whether the cow is alive.
 	*/
+
+    // every round, the cow will get older and its health value will decrease
     setHealth(getHealth()-1);
+    // the cow need energy to move, so every round it will get more hungry
     setStarvationValue(getStarvationValue()+1);
-	if (specie[getX()][getY()] == -1) {//prove it has been ate
+    if (specie[getX()][getY()] == -1) {//-1 represents that it has been aten by the tiger
 		specie[getX()][getY()] = 0;
 		return false;
 	}
+    // the condition that the cow dies of oldness or hunger
     if(getHealth()<=0||getStarvationValue()>extreStar){
         specie[getX()][getY()]=0;
         return false;

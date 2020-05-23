@@ -56,8 +56,10 @@ int move3[24][2]={{-1,0},{1,0},{0,-1},{0,1},{-2,0},{2,0},{0,-2},{0,2},
  */
 bool checkBoard(int x,int y);
 
+/* fourmax
+ * x_minus represents the tendency that an animal will walk one step into the Negative x direction
+ * return the direction of the largest tendency
+ */
 int fourmax(int x_minus, int y_minus, int x, int y);
-/*
-    return the largest one of 4 directions. */
 
 #endif // INITWORLD_H
