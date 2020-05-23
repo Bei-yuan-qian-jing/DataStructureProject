@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     cow.cpp \
-    game.cpp \
     gamecontrol.cpp \
     grass.cpp \
     initworld.cpp \
@@ -31,7 +30,6 @@ SOURCES += \
 
 HEADERS += \
     cow.h \
-    game.h \
     gamecontrol.h \
     grass.h \
     initworld.h \

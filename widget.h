@@ -1,6 +1,5 @@
 #ifndef WIDGET_H
 #define WIDGET_H
-#include<game.h>
 #include <QWidget>
 #include<QTimer>
 #include<gamecontrol.h>
@@ -41,7 +40,6 @@ private slots:
 
 private:
     Ui::Widget *ui;
-   // Game * myGame;
     gameControl * myGame;
     int timeinterval;
     QTimer * timer;

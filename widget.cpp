@@ -1,7 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include<QDebug>
-#include"game.h"
 #include<QPainter>
 
 
@@ -119,16 +118,16 @@ void Widget::paintEvent(QPaintEvent *) {
     painter.translate(30, 30);
     painter.setPen(pen);
     //paint the grass
-    for(int i = 0; i < maxn; i++) {
-        for(int j = 0; j < maxn; j++) {
+    for(int i = 0; i < row; i++) {
+        for(int j = 0; j < column; j++) {
             if(grassa[i][j])
                 painter.drawText(i * 6, j * 6, QString::number(grassa[i][j]));
         }
     }
 
     //paint the specise
-    for(int i = 0; i < maxn; i++) {
-        for(int j = 0; j < maxn; j++) {
+    for(int i = 0; i < row; i++) {
+        for(int j = 0; j < column; j++) {
             if(specie[i][j]){
                 switch (specie[i][j]) {
                 // sheep

@@ -17,7 +17,7 @@ bool checkBoard(int x, int y)
 
 int fourmax(int x_minus, int y_minus, int x, int y)
 {
-    x =( (x_minus)==x?(rand()%2==0?-x_minus:x):(x_minus>x?-x_minus:x));
+    x = ((x_minus)==x?(rand()%2==0?-x_minus:x):(x_minus>x?-x_minus:x));
     y = ((y_minus)==y?(rand()%2==0?-y_minus:y):(y_minus>y?-y_minus:y));
     if(abs(x)==abs(y)){
         if(x==0){
