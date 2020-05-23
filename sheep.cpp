@@ -76,7 +76,6 @@ int Sheep::update(){
                 setFindEnemy(1);
             }
     }}
-        setSheepDirection(0,0,0,0);
         return fourmax(sheepDirection[0],sheepDirection[1],sheepDirection[2],sheepDirection[3]);
 }
 

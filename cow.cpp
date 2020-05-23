@@ -1,5 +1,5 @@
 #include "cow.h"
-
+#include<cstdio>
 
 
 Cow::Cow(int x,int y){
@@ -73,7 +73,6 @@ int Cow::update(){
             }
         }
     }
-    setCowDirection(0,0,0,0);
     return fourmax(cowDirection[0],cowDirection[1],cowDirection[2],cowDirection[3]);
 }
 
