@@ -44,7 +44,7 @@ void Widget::on_Start_clicked()
     int sheep_num = ui->Sheep_num->value();
     int tiger_num = ui->Tiger_num->value();
 
-    std::cout << grass_num << " " << cow_num << " " << sheep_num << " " << tiger_num << std::endl;
+    //std::cout << grass_num << " " << cow_num << " " << sheep_num << " " << tiger_num << std::endl;
 
     myGame->init(grass_num, cow_num, sheep_num, tiger_num);
     this->timeinterval = ui->Move_Speed->value();

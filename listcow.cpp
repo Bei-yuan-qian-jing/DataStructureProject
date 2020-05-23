@@ -2,16 +2,26 @@
 #include<iostream>
 #include<cstring>
 
+int Listcow::getProReproNeeded() const
+{
+    return ProReproNeeded;
+}
+
+void Listcow::setProReproNeeded(int value)
+{
+    ProReproNeeded = value;
+}
+
 Listcow::Listcow(int x,int y)
 {
     Cow h(x,y);
     clist.push_back(h);
     setSize(1);
-    setBirth(0);
     setProductivity(5);
     setGrassContent(5);
-	setDirection(0, 0);
-	setDirection(1, 0);
+    setProReproNeeded(getProReproNeeded()+rand()%20-10);
+    setBirth(init_birth+rand()%3-1);
+    memset(enemy,0,sizeof (enemy));
 }
 
 void Listcow::appendList(Cow c){
@@ -30,7 +40,8 @@ bool Listcow::traverse()
 	one traverse of a herd of cow
 	*/
     int dir = updatedir();
-    memset(direction,0,sizeof(direction));
+    clearDirection();
+
 	c1 = clist.begin();
     while(c1!=clist.end())
 	{
@@ -51,10 +62,12 @@ bool Listcow::traverse()
 		if (getGrassContent() > 0)
 			setGrassContent(getGrassContent() - c1->eat());
         int j= c1->update();
+
         if(c1->getFindEnemy()){
-            addx(-sentivityToTiger*move1[j][0]);
-            addy(-sentivityToTiger*move1[j][1]);
+            addx(sentivityToTiger*move1[j][0]);
+            addy(sentivityToTiger*move1[j][1]);
             c1->setFindEnemy(0);
+            enemy[j]+=enemy_plus;
         }
         else
 		{
@@ -65,7 +78,7 @@ bool Listcow::traverse()
         if(getBirth()>0){
             int i = c1->reproduction();
             if(i>=0){
-            Cow c(c1->getX()+move1[i][0],c1->getY()+move1[i][1]);
+            Cow c(checkBoard(c1->getX()+move1[i][0]),checkBoard(c1->getY()+move1[i][1]));
             appendList(c);
             setSize(getSize()+1);
             specie[c.getX()][c.getY()]=4;
@@ -82,11 +95,12 @@ int Listcow::updatedir()
 	/*
 	update the dirction of a herd of cow
 	*/
-	if (productivity >= ProReproNeeded && getGrassContent() >= ContentReproNeeded) {
+    if (productivity >= ProReproNeeded*getSize() && getGrassContent() >= getSize()*5+ContentReproNeeded) {
 		birth++;
 		productivity -= ProReproNeeded;
+        grassContent -= ContentReproNeeded;
 
-	}
+    }
     return fourmax(direction[0],direction[1],direction[2],direction[3]);
 }
 
@@ -140,9 +154,10 @@ void Listcow::setGrassContent(int value)
 void Listcow::addx(int x)
 {
     if(x>0)
-        direction[2]+=x;
+        direction[1]+=x;
     if(x<0)
         direction[0]-=x;
+    return;
 }
 
 void Listcow::addy(int y)
@@ -150,5 +165,16 @@ void Listcow::addy(int y)
     if(y>0)
         direction[3]+=y;
     if(y<0)
-        direction[1]-=y;
+        direction[2]-=y;
+    return;
+}
+
+void Listcow::clearDirection(){
+    memset(direction,0,sizeof (direction));
+    for(int i = 0;i<4;i++){
+        if(enemy[i]>0){
+        direction[i]-=alert*enemy[i];
+        enemy[i]--;
+        }
+    }
 }

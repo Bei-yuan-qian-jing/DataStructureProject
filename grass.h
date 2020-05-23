@@ -5,7 +5,7 @@
 extern int grassa[100][100];
 extern int row,column;
 extern int move1[4][2];
-extern bool checkBoard(int x,int y);
+extern int checkBoard(int x);
 class Grass{
 
 private:

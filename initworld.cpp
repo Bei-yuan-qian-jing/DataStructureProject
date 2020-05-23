@@ -3,19 +3,17 @@
 
 
 
-bool checkBoard(int x, int y)
+int checkBoard(int x)
 {
-	/*
-	Boundary check 
-	*/ 
-    if(x<0||x>=row||y<0||y>=column)
-        return false;
-    else
-        return true;
+    if(x<=-1)
+        return 100+x;
+    if(x>=100)
+        return x-100;
+    return x;
 }
 
 
-int fourmax(int x_minus, int y_minus, int x, int y)
+int fourmax(int x_minus, int x, int y_minus, int y)
 {
     x = ((x_minus)==x?(rand()%2==0?-x_minus:x):(x_minus>x?-x_minus:x));
     y = ((y_minus)==y?(rand()%2==0?-y_minus:y):(y_minus>y?-y_minus:y));

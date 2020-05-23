@@ -6,7 +6,7 @@ extern int grassa[100][100];
 extern int row,column;
 extern int move1[4][2];
 extern int move2[12][2];
-extern bool checkBoard(int x,int y);
+extern int checkBoard(int x);
 extern int fourmax(int x_minus, int y_minus, int x, int y);
 class Cow
 {
@@ -19,12 +19,12 @@ private:
 
 	//---------self defined value---------
     int weigh[5] = { -1,-3,0,3,1 }; //when dis is 1, 2, the weigh is 3, 1
-    int kidhealth = 40; // the initial health value of the new born baby cow
-    int adulthealth = 30; // dividing line between the health value of baby cow and adult cow
-	int oldhealth = 10;
+    int kidhealth = 800; // the initial health value of the new born baby cow
+    int adulthealth = 720; // dividing line between the health value of baby cow and adult cow
+    int oldhealth = 50;
 	int fullStar = 1;
 	int hungryStar = 3;
-	int extreStar = 5;
+    int extreStar = 5;
 	//---------self defined value---------
 
 public:
