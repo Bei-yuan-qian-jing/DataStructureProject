@@ -1,6 +1,7 @@
 #ifndef COW_H
 #define COW_H
 #include<cmath>
+#include<cstdlib>
 extern int specie[100][100];
 extern int grassa[100][100];
 extern int row,column;
