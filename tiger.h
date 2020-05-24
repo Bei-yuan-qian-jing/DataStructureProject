@@ -7,7 +7,7 @@ extern int row,column;
 extern int move1[4][2];
 extern int move2[12][2];
 extern int move3[24][2];
-extern bool checkBoard(int x,int y);
+extern int checkBoard(int x);
 extern int fourmax(int x_minus, int y_minus, int x, int y);
 class Tiger
 {
@@ -21,7 +21,7 @@ private:
         int starvation=0;
     }kids[2];
     //before adult, the kid only exixt in its mother's varible, after adult, create a new tiger.
-
+    int lastDir;
 
 	//---------self defined value---------
     const int successRate[4] = { 9,8,7,6 };
@@ -30,11 +30,11 @@ private:
 	//possibilty to hunt a adult sheep:40%
 	//possibilty to hunt a adult sheep:50%
 	int weigh[5] = { -1,-3,0,3,1 };//when dis is 1, 2, the weigh is 3, 1
-	int kidhealth = 60;//refer to health value and starvation value
-	int adulthealth = 50;
-    int oldhealth = 10;
-	int fullStar = 5;
-    int hungryStar = 15;
+    int kidhealth = 1000;//refer to health value and starvation value
+    int adulthealth = 950;
+    int oldhealth = 50;
+    int fullStar = 10;
+    int hungryStar = 50;
 	//---------self defined value---------
 
 
@@ -66,6 +66,10 @@ public:
     void setSex(bool value);
     int getStarvationValue() const;
     void setStarvationValue(int value);
+    int getLastDir() const;
+    void setLastDir(int value);
+    int getKidhealth() const;
+    void setKidhealth(int value);
 };
 
 #endif // TIGER_H

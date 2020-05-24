@@ -1,16 +1,39 @@
 #include "tiger.h"
 #include<iostream>
+int Tiger::getLastDir() const
+{
+    return lastDir;
+}
+
+void Tiger::setLastDir(int value)
+{
+    lastDir = value;
+}
+
+int Tiger::getKidhealth() const
+{
+    return kidhealth;
+}
+
+void Tiger::setKidhealth(int value)
+{
+    kidhealth = value;
+}
+
 Tiger::Tiger(int x, int y, bool sex)
 {
     setX(x);
     setY(y);
     setSex(sex);
-    setHealth(kidhealth);
+
+    setHealth(adulthealth+rand()%100-50);
+
 	setStarvationValue(0);
     set_kidheal(0,0);
     set_kidheal(0,1);
     set_kidstar(0,0);//set the default condition of starvation is full
     set_kidstar(0,1);
+    setLastDir(rand()%4);
 	specie[x][y] = 8 - sex;
 }
 
@@ -19,38 +42,46 @@ bool Tiger::eat()
 	/*
 	tiger's eating
 	*/ 
+
     int target=-1;
     int newx,newy;
     int type=0;
-    for(int i = 0;i<4;i++){
-        newx = getX()+move1[i][0];
-        newy = getY()+move1[i][1];
-        if(checkBoard(newx,newy)){
-            if(specie[newx][newy]==4||specie[newx][newy]==6){
-                target = i;
-                type = 0;
-                break;
-             }
-            if(specie[newx][newy]==1||specie[newx][newy]==3){
-                target = i;
-                type = 1;
-                break;
-             }
-            if(specie[newx][newy]==2){
-                target = i;
-                type = 3;
-            }
-			if(specie[newx][newy]==5){
-                target = i;
-                type = 2;
-            }
+    int temp = rand()%4;
+    for (int i = temp; ; ) {
+
+        newx = checkBoard(x+move2[i][0]);
+        newy = checkBoard(y+move2[i][1]);
+        if(specie[newx][newy]==4||specie[newx][newy]==6){
+            target = i;
+            type = 0;
+            break;
+         }
+        if(specie[newx][newy]==1||specie[newx][newy]==3){
+            target = i;
+            type = 1;
+            break;
+         }
+        if(specie[newx][newy]==2){
+            target = i;
+            type = 3;
         }
+        if(specie[newx][newy]==5){
+            target = i;
+            type = 2;
+        }
+
+        i=(i+1)%4;
+        if(i==temp)
+            break;
+
     }
-    if(target != -1&&(rand()%10)<=successRate[type]){
-        specie[getX()+move1[target][0]][getY()+move1[target][1]]=-1;//if ate, become-1
-        setStarvationValue(getStarvationValue()-10);
-		set_kidstar(get_kidstar(0) - 10, 0);
-		set_kidstar(get_kidstar(1) - 10, 1);
+
+    if(target != -1){
+        specie[checkBoard(getX()+move1[target][0])][checkBoard(getY()+move1[target][1])]=-1;//if ate, become-1
+        setStarvationValue(getStarvationValue()-40);
+        set_kidstar(get_kidstar(0) - 40, 0);
+        set_kidstar(get_kidstar(1) - 40, 1);
+
         return true;
 
     }
@@ -62,33 +93,40 @@ bool Tiger::update()
 	/*
 	find the move type of tiger
 	*/ 
+
     if(eat())
         return true;
     int newx,newy;
     int target=-1;
-    for (int i = 4;i<12;i++)
+    int temp = rand()%8+4;
+    for (int i = temp;;)
 	{
-        newx = getX()+move2[i][0];
-        newy = getY()+move2[i][1];
-        if(checkBoard(newx,newy))
-		{
-            if(specie[newx][newy]==4||specie[newx][newy]==6||specie[newx][newy]==1||specie[newx][newy]==3)
-			{
-                target = i;
-                break;
-            }
-            else if(specie[newx][newy]==5||specie[newx][newy]==2)
-			{
-                target = i;
-            }
+        newx = checkBoard(x+move2[i][0]);
+        newy = checkBoard(y+move2[i][1]);
+
+        if(specie[newx][newy]==4||specie[newx][newy]==6||specie[newx][newy]==1||specie[newx][newy]==3)
+        {
+            target = i;
+            break;
         }
-    }
+        else if(specie[newx][newy]==5||specie[newx][newy]==2)
+        {
+            target = i;
+        }
+
+        i=(i-3)%8+4;
+        if(i==temp)
+            break;
+
        if(target<0)
 	   {
 	   	/*
 	    not found
 		*/ 
-            moveTiger(rand()%4);
+           if(rand()%4!=0)
+               moveTiger(lastDir);
+           else
+               moveTiger(rand()%4);
        }
        else if(target<8){
        	/*
@@ -105,8 +143,9 @@ bool Tiger::update()
            else
                moveTiger(target/2-2);
        }
-      return false;
 
+       return false;
+    }
 }
 
 bool Tiger::live()
@@ -123,6 +162,7 @@ bool Tiger::live()
         return false;
     }
 	specie[getX()][getY()] = (getSex() ? 7 : 8);
+
     return true;
 }
 
@@ -136,19 +176,18 @@ void Tiger::moveTiger(int i)
 	/*
         if no specie, move to i direction and move the kid tiger
 	*/ 
-    int newx = getX()+move1[i][0];
-    int newy = getY()+move1[i][1];
-    if(checkBoard(newx,newy)){
-        if(specie[newx][newy]==0)
-		{
-            specie[newx][newy]=8-getSex();
-            specie[getX()][getY()]=0;
-            setX(newx);
-            setY(newy);
-
-		}
+    int newx = checkBoard(x+move2[i][0]);
+    int newy = checkBoard(y+move2[i][1]);
+    if(specie[newx][newy]==0)
+    {
+        specie[newx][newy]=8-getSex();
+        specie[getX()][getY()]=0;
+        setX(newx);
+        setY(newy);
+        lastDir = i;
     }
-    else return;
+
+
 
 }
 
@@ -161,12 +200,12 @@ bool Tiger::kidlive(int no)
         return false;
     set_kidheal(get_kidheal(no)-1,no);
     set_kidstar(get_kidstar(no)+1,no);
-    if(get_kidstar(no)==20){
+    if(get_kidstar(no)==starvationValue){
         set_kidheal(0,no);
         set_kidstar(0,no);
         return false;
     }
-    if(get_kidheal(no) <= adulthealth){
+    if(get_kidheal(no) <= adulthealth+rand()%50-25){
         return true;
     }
     return false;
@@ -174,7 +213,7 @@ bool Tiger::kidlive(int no)
 
 bool Tiger::checkkid()
 {
-    return get_kidheal(0)||get_kidheal(1)||getSex();
+    return (get_kidheal(0)>0||get_kidheal(1)>0||getSex()==1||getHealth()<10)||getStarvationValue()<20;
 }
 
 void Tiger::reproduction()
@@ -182,6 +221,7 @@ void Tiger::reproduction()
 	/*
 	the reproduction of tiger 
 	*/ 
+
     int i = rand()%2;
     for(int j = 0;j<=i;j++){
         set_kidheal(kidhealth,i);
@@ -199,15 +239,14 @@ int Tiger::leave(int no)
 	*/
     for(int i = 0;i<=3;i++)
 	{
-        int newx = x + move1[i][0];
-        int newy = y + move1[i][1];
-		if (checkBoard(newx, newy)) {
+        int newx = checkBoard(x+move2[i][0]);
+        int newy = checkBoard(y+move2[i][1]);
 			if (specie[newx][newy] == 0)
 			{
 				set_kidheal(0, no);
 				return i;
 			}
-		}
+
 	}
     return -1;
 }

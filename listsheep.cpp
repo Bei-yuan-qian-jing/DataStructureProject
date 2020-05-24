@@ -1,15 +1,27 @@
 #include "listsheep.h"
 #include<iostream>
 #include<cstring>
+int Listsheep::getProReproNeeded() const
+{
+    return ProReproNeeded;
+}
+
+void Listsheep::setProReproNeeded(int value)
+{
+    ProReproNeeded = value;
+}
+
 Listsheep::Listsheep(int x,int y)
 {
     Sheep h(x,y);
     slist.push_back(h);
     setSize(1);
-    setBirth(0);
     setProductivity(5);
     setGrassContent(5);
-    std::memset(direction,0,sizeof(direction));
+    setProReproNeeded(getProReproNeeded()+rand()%20-10);
+    setBirth(init_birth+rand()%3-1);
+    memset(direction,0,sizeof(direction));
+    memset(enemy,0,sizeof (enemy));
 }
 
 void Listsheep::appendList(Sheep c){
@@ -28,7 +40,7 @@ bool Listsheep::traverse()
         one traverse of a herd of sheep
         */
     int dir = updatedir();
-    memset(direction,0,sizeof(direction));
+    clearDirection();
 	s1 = slist.begin();
     while(s1!=slist.end()){
 		// std::cout << "S  health: " << s1->getHealth() << " star: " << s1->getStarvationValue() << " state: " << specie[s1->getX()][s1->getY()] <<" content: "<<getGrassContent()<< std::endl;
@@ -60,7 +72,7 @@ bool Listsheep::traverse()
         if(getBirth()>0){
             int i = s1->reproduction();
             if(i>=0){
-            Sheep c(s1->getX()+move1[i][0],s1->getY()+move1[i][1]);
+            Sheep c(checkBoard(s1->getX()+move1[i][0]),checkBoard(s1->getY()+move1[i][1]));
             appendList(c);
             setSize(getSize()+1);
             specie[c.getX()][c.getY()]=1;
@@ -78,10 +90,12 @@ int Listsheep::updatedir()
         /*
         update the dirction of a herd of sheep
         */
-    if(productivity>=ProReproNeeded&&getGrassContent()>=ContentReproNeeded){
+    if(productivity>=ProReproNeeded*getSize()&&getGrassContent()>=getSize()*5+ContentReproNeeded){
         birth++;
-        productivity-=ProReproNeeded;
+        productivity-=ProReproNeeded*getSize();
+        ContentReproNeeded -= ContentReproNeeded;
     }
+
     return fourmax(direction[0],direction[1],direction[2],direction[3]);
 }
 
@@ -134,7 +148,7 @@ void Listsheep::setGrassContent(int value)
 void Listsheep::addx(int x)
 {
     if(x>0)
-        direction[2]+=x;
+        direction[1]+=x;
     if(x<0)
         direction[0]-=x;
 }
@@ -144,5 +158,16 @@ void Listsheep::addy(int y)
     if(y>0)
         direction[3]+=y;
     if(y<0)
-        direction[1]-=y;
+        direction[2]-=y;
+}
+void Listsheep::clearDirection(){
+    memset(direction,0,sizeof(direction));
+    for(int i = 0;i<4;i++){
+
+        if(enemy[i]>0){
+        direction[i]-=alert*enemy[i];
+        enemy[i]--;
+        }
+
+    }
 }

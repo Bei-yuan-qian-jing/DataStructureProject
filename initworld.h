@@ -54,7 +54,7 @@ int move3[24][2]={{-1,0},{1,0},{0,-1},{0,1},{-2,0},{2,0},{0,-2},{0,2},
 /* checkBoard
  * used for check if the new cooridinate(x, y) is exceed the range of world
  */
-bool checkBoard(int x,int y);
+int checkBoard(int x);
 
 /* fourmax
  * x_minus represents the tendency that an animal will walk one step into the Negative x direction

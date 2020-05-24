@@ -161,13 +161,12 @@ void gameControl::init(int GrassNumber, int CowherdNumber, int SheepHerdNumber, 
 
 void gameControl::nextTurn()
 {
-    int count = 0;
+
     for (int i = 0; i <100; i++)
     {
         for (int j = 0; j < 100; j++) {
             grassList[i][j]->live();
-            if (grassa[i][j] != 0)
-                count++;
+
         }
     }
    // std::cout << count<<std::endl;
@@ -185,7 +184,7 @@ void gameControl::nextTurn()
                 if (cowlist.empty());
                    // std::cout << "All cows died!!!";
             }
-            lc++;;
+            lc++;
         }
     }
     if (!sheeplist.empty()) {

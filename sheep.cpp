@@ -57,32 +57,36 @@ int Sheep::update(){
         */
     int newx,newy;
     setSheepDirection(0,0,0,0);
-    for(int i = 0;i <= 11 ; i++){
-        newx = x+move2[i][0];
-        newy = y+move2[i][1];
-        if(checkBoard(newx, newy))
-                {
-            if(grassa[newx][newy]>0)
-                        {
-                //find the grass
-                addx(weigh[move2[i][0]+2]);
-                addy(weigh[move2[i][1]+2]);
-            }
-            if(specie[newx][newy]==7||specie[newx][newy]==8)
-            {
-                //find the tiger
-                addx(-3*weigh[move2[i][0]+2]);
-                addy(-3*weigh[move2[i][1]+2]);
-                setFindEnemy(1);
-            }
-    }}
+    int temp = rand()%12;
+    for(int i = temp;;){
+        newx = checkBoard(x+move2[i][0]);
+        newy = checkBoard(y+move2[i][1]);
+        if(grassa[newx][newy]>0)
+                    {
+            //find the grass
+            addx(weigh[move2[i][0]+2]);
+            addy(weigh[move2[i][1]+2]);
+        }
+        if(specie[newx][newy]==7||specie[newx][newy]==8)
+        {
+            //find the tiger
+            addx(-5*weigh[move2[i][0]+2]);
+            addy(-5*weigh[move2[i][1]+2]);
+            setFindEnemy(1);
+        }
+
+        i = (i+1)%12;
+        if(i==temp)
+            break;
+    }
+
         return fourmax(sheepDirection[0],sheepDirection[1],sheepDirection[2],sheepDirection[3]);
 }
 
 void Sheep::addx(int x)
 {
     if(x>0)
-        sheepDirection[2]+=x;
+        sheepDirection[1]+=x;
     if(x<0)
         sheepDirection[0]-=x;
 }
@@ -92,7 +96,7 @@ void Sheep::addy(int y)
     if(y>0)
         sheepDirection[3]+=y;
     if(y<0)
-        sheepDirection[1]-=y;
+        sheepDirection[2]-=y;
 }
 
 int Sheep::eat(){
@@ -126,27 +130,30 @@ void Sheep::moveSheep(int i) {
 	/*
 	move towards the direction of i
 	*/
-	int newx = getX() + move1[i][0];
-	int newy = getY() + move1[i][1];
-	if (checkBoard(newx, newy)) {
-		specie[newx][newy] = specie[getX()][getY()];
-		specie[getX()][getY()] = 0;
-		setX(newx);
-		setY(newy);
-	}
+    int newx = checkBoard(x+move2[i][0]);
+    int newy = checkBoard(y+move2[i][1]);
+
+    specie[newx][newy] = specie[getX()][getY()];
+    specie[getX()][getY()] = 0;
+    setX(newx);
+    setY(newy);
+
 }
 
 int Sheep::reproduction(){
         /*
         check whether the nearby block is available
         */
-	for (int i = 0; i <= 3; i++) {
-		int newx = x + move1[i][0];
-		int newy = y + move1[i][1];
-		if (checkBoard(newx, newy)) {
-			if (specie[newx][newy] == 0)
-				return i;
-		}
+    int temp = rand()%4;
+    for (int i = temp;; ) {
+        int newx = checkBoard(x+move2[i][0]);
+        int newy = checkBoard(y+move2[i][1]);
+        if (specie[newx][newy] == 0)
+            return i;
+
+        i=(i+1)%4;
+        if(i==temp)
+            break;
 	}
     return -1;
 }

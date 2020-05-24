@@ -31,19 +31,24 @@ void Grass::reproduction()
 	the reproduction of grass
 	*/
     int newx,newy;
-    for(int i = 0;i <= 3 ; i++){
-        newx = x+move1[i][0];
-        newy = y+move1[i][1];
-        if(checkBoard(newx, newy)){
-			if (grassa[newx][newy] == 0) {
-                if (rand() % 10 < prob) {
-					grassa[newx][newy] = 10;
+    int temp = rand()%4;
+    for (int i = temp; ; ) {
 
-				}
-			}
-    }
+        newx = checkBoard(x+move1[i][0]);
+        newy = checkBoard(y+move1[i][1]);
 
-}}
+        if (grassa[newx][newy] == 0) {
+            if (rand() % 20 < prob) {
+                grassa[newx][newy] = 15+rand()%4-2;
+
+            }
+        }
+        i=(i+1)%4;
+        if(i==temp)
+            break;
+
+}
+}
 
 
 

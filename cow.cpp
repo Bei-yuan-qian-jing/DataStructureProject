@@ -4,7 +4,7 @@
 
 Cow::Cow(int x,int y){
 
-    setHealth(kidhealth);
+    setHealth(kidhealth+rand()%100-50);
     setStarvationValue(0);
     setCowDirection(0,0,0,0);
 	setFindEnemy(0);
@@ -53,11 +53,10 @@ int Cow::update(){
         */
     int newx,newy;
     setCowDirection(0,0,0,0);
-    for(int i = 0;i <= 11 ; i++){
-        newx = x+move2[i][0];
-        newy = y+move2[i][1];
-        if(checkBoard(newx, newy))
-        {
+    int temp = rand()%12;
+    for(int i = temp;;){
+        newx = checkBoard(x+move2[i][0]);
+        newy = checkBoard(y+move2[i][1]);
             if(grassa[newx][newy]>0)
                         {
                 //find the grass
@@ -67,11 +66,14 @@ int Cow::update(){
             if(specie[newx][newy]==7||specie[newx][newy]==8)
             {
                 //find the tiger
-                addx(-3*weigh[move2[i][0]+2]);
-                addy(-3*weigh[move2[i][1]+2]);
+                addx(-5*weigh[move2[i][0]+2]);
+                addy(-5*weigh[move2[i][1]+2]);
                 setFindEnemy(1);
             }
-        }
+
+        i=(i+1)%12;
+        if(i==temp)
+            break;
     }
     return fourmax(cowDirection[0],cowDirection[1],cowDirection[2],cowDirection[3]);
 }
@@ -79,7 +81,7 @@ int Cow::update(){
 void Cow::addx(int x)
 {
     if(x>0)
-        cowDirection[2]+=x;
+        cowDirection[1]+=x;
     if(x<0)
         cowDirection[0]-=x;
 }
@@ -89,7 +91,7 @@ void Cow::addy(int y)
     if(y>0)
         cowDirection[3]+=y;
     if(y<0)
-        cowDirection[1]-=y;
+        cowDirection[2]-=y;
 }
 
 
@@ -124,27 +126,29 @@ void Cow::moveCow(int i) {
 	/*
 	move towards the direction of i
 	*/
-	int newx = getX() + move1[i][0];
-	int newy = getY() + move1[i][1];
-	if (checkBoard(newx, newy)) {
-		specie[getX() + move1[i][0]][getY() + move1[i][1]] = specie[getX()][getY()];
-		specie[getX()][getY()] = 0;
-		setX(getX() + move1[i][0]);
-		setY(getY() + move1[i][1]);
-	}
+    int newx = checkBoard(x+move2[i][0]);
+    int newy = checkBoard(y+move2[i][1]);
+    specie[newx][newy] = specie[getX()][getY()];
+    specie[getX()][getY()] = 0;
+    setX(newx);
+    setY(newy);
+
 }
 
 int Cow::reproduction(){
 	/*
 	check whether the nearby block is available
 	*/
-	for (int i = 0; i <= 3; i++) {
-		int newx = x + move1[i][0];
-		int newy = y + move1[i][1];
-		if (checkBoard(newx, newy)) {
-			if (specie[newx][newy] == 0 )
-				return i;
-		}
+    int temp = rand()%4;
+    for (int i = temp; ; ) {
+
+        int newx = checkBoard(x+move2[i][0]);
+        int newy = checkBoard(y+move2[i][1]);
+        if (specie[newx][newy] == 0 )
+            return i;
+        i=(i+1)%4;
+        if(i==temp)
+            break;
 	}
     return -1;
 }

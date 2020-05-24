@@ -6,7 +6,7 @@ extern int grassa[100][100];
 extern int row,column;
 extern int move1[4][2];
 extern int move2[12][2];
-extern bool checkBoard(int x,int y);
+extern int checkBoard(int x);
 extern int fourmax(int x_minus, int y_minus, int x, int y);
 
 class Sheep//similar to cow, only different in some value
@@ -20,9 +20,9 @@ private:
 
 	//---------self defined value---------
 	int weigh[5] = { -1,-3,0,3,1 };//when dis is 1, 2, the weigh is 3, 1
-	int kidhealth = 25;//refer to health value and starvation value
-	int adulthealth = 20;
-	int oldhealth = 5;
+    int kidhealth = 600;//refer to health value and starvation value
+    int adulthealth = 560;
+    int oldhealth = 20;
 	int fullStar = 1;
 	int hungryStar = 3;
 	int extreStar = 4;

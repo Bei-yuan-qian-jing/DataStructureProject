@@ -7,7 +7,7 @@ extern int specie[100][100];
 extern int row,column;
 extern int move1[4][2];
 extern int move2[12][2];
-extern bool checkBoard(int x,int y);
+extern int checkBoard(int x);
 extern int fourmax(int x_minus, int y_minus, int x, int y);class Listcow
 {
 private:
@@ -21,10 +21,14 @@ private:
     std::list<Cow>::iterator c1;//iterator for traverse the list
 	
 	//---------self defined value---------
-    int addGrassEachTime = 10;//the starvationValue increment by one grass
-	int ProReproNeeded = 7;//the value needed to let birth++
+    int addGrassEachTime = 8;//the starvationValue increment by one grass
+    int ProReproNeeded = 30;//the value needed to let birth++
 	int ContentReproNeeded = 10;
-	int sentivityToTiger = 2; //if one find tiger, the diretion trend will increse x times
+    int alert = 3;
+    int enemy[4];//each cycle the direction array - i's enemy[i]*alert
+    int enemy_plus = 3;//when find enemy in j, enemy[j]+=enemy_plus
+    int sentivityToTiger = 8; //if one find tiger, the diretion trend will increse x times
+    int init_birth=3;//the init number of list
 	//---------self defined value---------
 public:
     Listcow(int x,int y);
@@ -51,6 +55,10 @@ public:
 
     void addx(int x);
     void addy(int y);
+
+    void clearDirection();
+    int getProReproNeeded() const;
+    void setProReproNeeded(int value);
 };
 
 #endif // LISTCOW_H
