@@ -238,7 +238,7 @@
   <widget class="QProgressBar" name="Move_Speed">
    <property name="geometry">
     <rect>
-     <x>710</x>
+     <x>740</x>
      <y>200</y>
      <width>221</width>
      <height>41</height>
