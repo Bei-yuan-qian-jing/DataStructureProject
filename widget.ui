@@ -298,7 +298,7 @@
     <item>
      <widget class="QLabel" name="notation_cow">
       <property name="text">
-       <string>4,5 represent the kid, adult, old states of cow </string>
+       <string>4,5,6 represent the kid, adult, old states of cow </string>
       </property>
      </widget>
     </item>
