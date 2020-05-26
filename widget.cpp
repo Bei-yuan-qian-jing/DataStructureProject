@@ -13,6 +13,24 @@ Widget::Widget(QWidget *parent)
 
     setWindowTitle("Ecosytem");
     setFixedSize(1000, 800);
+
+    //chage the color of the population label
+    QPalette pa;
+    pa.setColor(QPalette::WindowText,Qt::green);
+    ui->L_grass->setPalette(pa);
+
+    pa.setColor(QPalette::WindowText,Qt::black);
+    ui->L_sheep->setPalette(pa);
+    ui->notation_sheep->setPalette(pa);
+
+    pa.setColor(QPalette::WindowText,Qt::blue);
+    ui->L_cow->setPalette(pa);
+    ui->notation_cow->setPalette(pa);
+
+    pa.setColor(QPalette::WindowText,Qt::red);
+    ui->L_tiger->setPalette(pa);
+    ui->notation_tiger->setPalette(pa);
+
     myGame = new gameControl();
 
     timer = new QTimer(this);
@@ -27,6 +45,7 @@ Widget::Widget(QWidget *parent)
     connect(timer, &QTimer::timeout, [=](){
         update();
     });
+
 
 }
 

@@ -118,28 +118,8 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="Cow_num">
-       <property name="maximum">
-        <number>1000</number>
-       </property>
-       <property name="value">
-        <number>20</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QSpinBox" name="Sheep_num">
-       <property name="maximum">
-        <number>1000</number>
-       </property>
-       <property name="value">
-        <number>30</number>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="L_grass">
        <property name="text">
         <string>Grass</string>
        </property>
@@ -149,29 +129,9 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="L_tiger">
        <property name="text">
         <string>Tiger</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Cow</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Sheep</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -195,6 +155,46 @@
        </property>
        <property name="value">
         <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="L_sheep">
+       <property name="text">
+        <string>Sheep</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="L_cow">
+       <property name="text">
+        <string>Cow</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="Cow_num">
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="value">
+        <number>20</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="Sheep_num">
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="value">
+        <number>30</number>
        </property>
       </widget>
      </item>
@@ -232,14 +232,14 @@
     <number>0</number>
    </property>
    <property name="value">
-    <number>500</number>
+    <number>400</number>
    </property>
   </widget>
   <widget class="QProgressBar" name="Move_Speed">
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>200</y>
+     <y>220</y>
      <width>221</width>
      <height>41</height>
     </rect>
@@ -254,7 +254,7 @@
     <number>2000</number>
    </property>
    <property name="value">
-    <number>500</number>
+    <number>400</number>
    </property>
    <property name="textVisible">
     <bool>true</bool>
@@ -268,6 +268,48 @@
    <property name="format">
     <string> %v ms / f</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>60</y>
+     <width>331</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Book Antiqua</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="title">
+    <string>Notation</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="notation_sheep">
+      <property name="text">
+       <string>1,2,3 represent the kid, adult, old states of sheep</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="notation_cow">
+      <property name="text">
+       <string>4,5 represent the kid, adult, old states of cow </string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="notation_tiger">
+      <property name="text">
+       <string>7,8 represent the male and female states of tiger</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
