@@ -22,20 +22,21 @@ private:
 	
 	//---------self defined value---------
     int addGrassEachTime = 5;//the starvationValue increment by one grass
-    int ProReproNeeded = 80;//the value needed to let birth++
+    int ProReproNeeded = 30;//the value needed to let birth++
 	int ContentReproNeeded = 10;
     int alert = 3;
     int enemy[4];//each cycle the direction array - i's enemy[i]*alert
     int enemy_plus = 3;//when find enemy in j, enemy[j]+=enemy_plus
     int sentivityToTiger = 8; //if one find tiger, the diretion trend will increse x times
-    int init_birth=3;//the init number of list
+    int init_birth=5;//the init number of list
 	//---------self defined value---------
 public:
     Listcow(int x,int y);
+    Listcow(std::list<Cow> c1);
     int updatedir();//choose the largest trend direction
     void appendList(Cow c);
     void removeList(std::list<Cow>::iterator a);
-    bool traverse();//excute every cycle and traverse all cows
+    int traverse();//excute every cycle and traverse all cows
 
     void setDirection(int i,int j);//set the i-th num to j
 
@@ -59,6 +60,9 @@ public:
     void clearDirection(int dir);
     int getProReproNeeded() const;
     void setProReproNeeded(int value);
+
+    std::list<Cow> branchCow();
+
 };
 
 #endif // LISTCOW_H

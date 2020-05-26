@@ -31,12 +31,10 @@ bool Sheep::live() {
 	setStarvationValue(getStarvationValue() + 1);
 	if (specie[getX()][getY()] == -1){
 		specie[getX()][getY()] = 0;
-        std::cout<<"eats"<<std::endl;
 		return false;
 	}
     if(getHealth()<=0||getStarvationValue()>extreStar){
         specie[getX()][getY()]=0;
-        std::cout<<"hungs"<<std::endl;
         return false;
     }
     if(getHealth()<=oldhealth){
@@ -142,7 +140,7 @@ void Sheep::moveSheep(int i) {
 
 }
 
-int Sheep::reproduction(){
+int Sheep::reproduction(int dir){
         /*
         check whether the nearby block is available
         */
@@ -150,7 +148,7 @@ int Sheep::reproduction(){
     for (int i = temp;; ) {
         int newx = checkBoard(x+move2[i][0]);
         int newy = checkBoard(y+move2[i][1]);
-        if (specie[newx][newy] == 0)
+        if ((specie[newx][newy] == 0) && (specie[newx-move1[dir][0]][newy-move1[dir][1]]==0))
             return i;
 
         i=(i+1)%4;

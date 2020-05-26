@@ -11,6 +11,20 @@ void Listsheep::setProReproNeeded(int value)
     ProReproNeeded = value;
 }
 
+std::list<Sheep> Listsheep::branchSheep()
+{
+    s1=slist.begin();
+
+    for(int i = 1;i<7;i++){
+        s1++;
+    }
+    std::list<Sheep>temp;
+    temp.insert(temp.begin(),s1,slist.end());
+    slist.erase(s1,slist.end());
+    setSize(8);
+    return temp;
+}
+
 Listsheep::Listsheep(int x,int y)
 {
     Sheep h(x,y);
@@ -19,9 +33,22 @@ Listsheep::Listsheep(int x,int y)
     setProductivity(5);
     setGrassContent(5);
     setProReproNeeded(getProReproNeeded()+rand()%20-10);
-    setBirth(init_birth+rand()%3-1);
+    setBirth(init_birth);
     memset(direction,0,sizeof(direction));
     memset(enemy,0,sizeof (enemy));
+}
+
+Listsheep::Listsheep(std::list<Sheep>l1)
+{
+    s1=slist.begin();
+    slist.splice(s1,l1);
+    setSize(8);
+    setProductivity(5);
+    setGrassContent(24);
+    setProReproNeeded(getProReproNeeded()+rand()%20-10);
+    setBirth(0);
+    memset(enemy,0,sizeof (enemy));
+    memset(direction,0,sizeof(direction));
 }
 
 void Listsheep::appendList(Sheep c){
@@ -34,7 +61,7 @@ void Listsheep::removeList(std::list<Sheep>::iterator a){
     slist.erase(a);
 }
 
-bool Listsheep::traverse()
+int Listsheep::traverse()
 {
         /*
         one traverse of a herd of sheep
@@ -47,14 +74,28 @@ bool Listsheep::traverse()
         if(!s1->live()){
 			s1 = slist.erase(s1);
 			setSize(getSize() - 1);
-			if (slist.empty())return false;
+            if (slist.empty())return 0;
+            if (s1 == slist.end())break;
+            setProductivity(getProductivity()+5);
 			continue;
+        }
+        if(getBirth()>0){
+            int i = s1->reproduction(dir);
+            if(i>=0){
+            Sheep c(checkBoard(s1->getX()+move1[i][0]),checkBoard(s1->getY()+move1[i][1]));
+            appendList(c);
+            setSize(getSize()+1);
+            specie[c.getX()][c.getY()]=1;
+            setBirth(getBirth() - 1);
+            }
         }
         if(specie[s1->getX()][s1->getY()]==2)
             productivity++;
         s1->moveSheep(dir);
-        if(s1->add())
-            setGrassContent(getGrassContent()+addGrassEachTime);
+        if(getGrassContent()<getSize()*4){
+            if(s1->add())
+                setGrassContent(getGrassContent()+addGrassEachTime);
+        }
         if(getGrassContent()>0)
             grassContent-=s1->eat();
         int j= s1->update();
@@ -69,19 +110,12 @@ bool Listsheep::traverse()
             addy(move1[j][1]);
         }
 
-        if(getBirth()>0){
-            int i = s1->reproduction();
-            if(i>=0){
-            Sheep c(checkBoard(s1->getX()+move1[i][0]),checkBoard(s1->getY()+move1[i][1]));
-            appendList(c);
-            setSize(getSize()+1);
-            specie[c.getX()][c.getY()]=1;
-			setBirth(getBirth() - 1);
-			}
-		}
+
 		++s1;
     }
-	return true;
+    if(getSize()>=16)
+        return 2;
+    return 1;
 }
 
 
@@ -90,7 +124,7 @@ int Listsheep::updatedir()
         /*
         update the dirction of a herd of sheep
         */
-    if(productivity>=ProReproNeeded&&getGrassContent()>=getSize()*3+ContentReproNeeded){
+    if((productivity>=(ProReproNeeded +getSize()*8))&&getGrassContent()>=ContentReproNeeded){
         birth++;
         productivity-=ProReproNeeded;
         ContentReproNeeded -= ContentReproNeeded;

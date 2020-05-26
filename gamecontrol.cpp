@@ -178,21 +178,29 @@ void gameControl::nextTurn()
     }
     if (!cowlist.empty()) {
         for (lc = cowlist.begin(); lc != cowlist.end();) {
-            if (!lc->traverse()) {
+            int i = lc->traverse();
+            if(i==0){
                 cowlist.erase(lc++);
                 continue;
-
             }
+            if(i==2){
+                cowlist.push_back(Listcow(lc->branchCow()));
+            }
+
             lc++;
         }
     }
     if (!sheeplist.empty()) {
         for (ls = sheeplist.begin(); ls != sheeplist.end(); ) {
-            if (!ls->traverse()) {
+            int i = ls->traverse();
+            if(i==0){
                 sheeplist.erase(ls++);
                 continue;
-
             }
+            if(i==2){
+                sheeplist.push_back(Listsheep(ls->branchSheep()));
+            }
+
             ls++;
         }
     }

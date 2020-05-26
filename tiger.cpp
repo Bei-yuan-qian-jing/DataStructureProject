@@ -28,7 +28,7 @@ Tiger::Tiger(int x, int y, bool sex)
 
     setHealth(adulthealth+rand()%100-50);
 
-	setStarvationValue(0);
+    setStarvationValue(-30);
     set_kidheal(0,0);
     set_kidheal(0,1);
     set_kidstar(0,0);//set the default condition of starvation is full

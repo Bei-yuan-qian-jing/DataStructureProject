@@ -40,7 +40,7 @@ public:
     void addx(int x);
     void addy(int y);
 
-    int reproduction();
+    int reproduction(int dir);
     //check if surrending 4 locations has an empty one and return the number.
     void moveSheep(int i);
     //move to given direction i.

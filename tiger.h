@@ -24,7 +24,7 @@ private:
     int lastDir;
 
 	//---------self defined value---------
-    const int successRate[4] = { 9,8,7,6 };
+    const int successRate[4] = { 9,9,7,6 };
 	//possibilty to hunt a kid or old cow:80%
 	//possibilty to hunt a kid or old sheep:70%
 	//possibilty to hunt a adult sheep:40%

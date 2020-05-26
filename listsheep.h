@@ -21,21 +21,21 @@ private:
     std::list<Sheep>::iterator s1;//iterator for traverse the list
 
 	//---------self defined value---------
-    int addGrassEachTime = 8;//the starvationValue increment by one grass
-    int ProReproNeeded = 50;//the value needed to let birth++
+    int addGrassEachTime = 4 ;//the starvationValue increment by one grass
+    int ProReproNeeded = 10;//the value needed to let birth++
     int ContentReproNeeded = 8;
     int alert = 3;
     int enemy[4];//each cycle the direction array - i's enemy[i]*alert
     int enemy_plus = 3;//when find enemy in j, enemy[j]+=enemy_plus
     int sentivityToTiger = 5;//if one find tiger, the diretion trend will increse x times
-    int init_birth=2;//the init number of list
+    int init_birth=6;//the init number of list
     //---------self defined value---------
 public:
     Listsheep(int x,int y);
     int updatedir();//choose the largest trend direction
     void appendList(Sheep c);
     void removeList(std::list<Sheep>::iterator a);
-    bool traverse();//excute every cycle and traverse all cows
+    int traverse();//excute every cycle and traverse all cows
     void setDirection(int i,int j);//第i个数设成j
 
 
@@ -57,6 +57,8 @@ public:
     void clearDirection(int dir);
     int getProReproNeeded() const;
     void setProReproNeeded(int value);
+    std::list<Sheep> branchSheep();
+    Listsheep(std::list<Sheep> l1);
 };
 
 
