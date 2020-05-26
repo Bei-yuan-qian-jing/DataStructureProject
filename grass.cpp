@@ -38,8 +38,8 @@ void Grass::reproduction()
         newy = checkBoard(y+move1[i][1]);
 
         if (grassa[newx][newy] == 0) {
-            if (rand() % 20 < prob) {
-                grassa[newx][newy] = 15+rand()%4-2;
+            if (rand() % 25 < prob) {
+                grassa[newx][newy] = 20+rand()%4-2;
 
             }
         }

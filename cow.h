@@ -20,8 +20,8 @@ private:
 
 	//---------self defined value---------
     int weigh[5] = { -1,-3,0,3,1 }; //when dis is 1, 2, the weigh is 3, 1
-    int kidhealth = 800; // the initial health value of the new born baby cow
-    int adulthealth = 720; // dividing line between the health value of baby cow and adult cow
+    int kidhealth = 600; // the initial health value of the new born baby cow
+    int adulthealth = 520; // dividing line between the health value of baby cow and adult cow
     int oldhealth = 50;
 	int fullStar = 1;
 	int hungryStar = 3;

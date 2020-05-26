@@ -1,5 +1,5 @@
 #include "sheep.h"
-
+#include<iostream>
 
 bool Sheep::getFindEnemy() const
 {
@@ -31,10 +31,12 @@ bool Sheep::live() {
 	setStarvationValue(getStarvationValue() + 1);
 	if (specie[getX()][getY()] == -1){
 		specie[getX()][getY()] = 0;
+        std::cout<<"eats"<<std::endl;
 		return false;
 	}
     if(getHealth()<=0||getStarvationValue()>extreStar){
         specie[getX()][getY()]=0;
+        std::cout<<"hungs"<<std::endl;
         return false;
     }
     if(getHealth()<=oldhealth){

@@ -16,7 +16,7 @@ Listtiger::Listtiger(int Size)
 {
     size = Size;
     tlist.clear();
-    setMovetimes(3);
+    setMovetimes(5);
 }
 
 bool Listtiger::traverse()
@@ -55,16 +55,17 @@ bool Listtiger::traverse()
                     break;
             }
         }
-        else if(!t1->checkkid()){
-            t1->reproduction();
-        }
         else{
 
             for(int i = 0;i<getMovetimes();i++){
                 t1->moveTiger(rand()%4);
             }
 
-		}
+        }
+        if(!t1->checkkid()){
+            t1->reproduction();
+        }
+
 		++t1;
 	}
 	return true;

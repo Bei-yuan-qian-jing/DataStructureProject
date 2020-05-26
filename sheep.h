@@ -21,9 +21,9 @@ private:
 
 	//---------self defined value---------
 	int weigh[5] = { -1,-3,0,3,1 };//when dis is 1, 2, the weigh is 3, 1
-    int kidhealth = 600;//refer to health value and starvation value
-    int adulthealth = 560;
-    int oldhealth = 20;
+    int kidhealth = 500;//refer to health value and starvation value
+    int adulthealth = 420;
+    int oldhealth = 50;
 	int fullStar = 1;
 	int hungryStar = 3;
 	int extreStar = 4;

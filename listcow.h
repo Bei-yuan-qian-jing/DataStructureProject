@@ -21,8 +21,8 @@ private:
     std::list<Cow>::iterator c1;//iterator for traverse the list
 	
 	//---------self defined value---------
-    int addGrassEachTime = 8;//the starvationValue increment by one grass
-    int ProReproNeeded = 30;//the value needed to let birth++
+    int addGrassEachTime = 5;//the starvationValue increment by one grass
+    int ProReproNeeded = 80;//the value needed to let birth++
 	int ContentReproNeeded = 10;
     int alert = 3;
     int enemy[4];//each cycle the direction array - i's enemy[i]*alert
@@ -56,7 +56,7 @@ public:
     void addx(int x);
     void addy(int y);
 
-    void clearDirection();
+    void clearDirection(int dir);
     int getProReproNeeded() const;
     void setProReproNeeded(int value);
 };

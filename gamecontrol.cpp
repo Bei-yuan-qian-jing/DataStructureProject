@@ -181,8 +181,7 @@ void gameControl::nextTurn()
             if (!lc->traverse()) {
                 cowlist.erase(lc++);
                 continue;
-                if (cowlist.empty());
-                   // std::cout << "All cows died!!!";
+
             }
             lc++;
         }
@@ -192,8 +191,7 @@ void gameControl::nextTurn()
             if (!ls->traverse()) {
                 sheeplist.erase(ls++);
                 continue;
-                if (sheeplist.empty());
-                    //std::cout << "All sheeps died!!!";
+
             }
             ls++;
         }

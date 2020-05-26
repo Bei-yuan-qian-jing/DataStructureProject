@@ -40,7 +40,7 @@ bool Listsheep::traverse()
         one traverse of a herd of sheep
         */
     int dir = updatedir();
-    clearDirection();
+    clearDirection(dir);
 	s1 = slist.begin();
     while(s1!=slist.end()){
 		// std::cout << "S  health: " << s1->getHealth() << " star: " << s1->getStarvationValue() << " state: " << specie[s1->getX()][s1->getY()] <<" content: "<<getGrassContent()<< std::endl;
@@ -90,9 +90,9 @@ int Listsheep::updatedir()
         /*
         update the dirction of a herd of sheep
         */
-    if(productivity>=ProReproNeeded*getSize()&&getGrassContent()>=getSize()*5+ContentReproNeeded){
+    if(productivity>=ProReproNeeded&&getGrassContent()>=getSize()*3+ContentReproNeeded){
         birth++;
-        productivity-=ProReproNeeded*getSize();
+        productivity-=ProReproNeeded;
         ContentReproNeeded -= ContentReproNeeded;
     }
 
@@ -160,8 +160,9 @@ void Listsheep::addy(int y)
     if(y<0)
         direction[2]-=y;
 }
-void Listsheep::clearDirection(){
+void Listsheep::clearDirection(int dir){
     memset(direction,0,sizeof(direction));
+    direction[dir]=1;
     for(int i = 0;i<4;i++){
 
         if(enemy[i]>0){

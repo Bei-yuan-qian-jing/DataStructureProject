@@ -39,8 +39,9 @@ bool Listcow::traverse()
 	/*
 	one traverse of a herd of cow
 	*/
+
     int dir = updatedir();
-    clearDirection();
+    clearDirection(dir);
 
 	c1 = clist.begin();
     while(c1!=clist.end())
@@ -87,6 +88,7 @@ bool Listcow::traverse()
 		}
 		++c1;
     }
+
 	return true;
 }
 
@@ -95,9 +97,9 @@ int Listcow::updatedir()
 	/*
 	update the dirction of a herd of cow
 	*/
-    if (productivity >= ProReproNeeded*getSize() && getGrassContent() >= getSize()*5+ContentReproNeeded) {
+    if (productivity >= ProReproNeeded && getGrassContent() >= getSize()*5+ContentReproNeeded) {
 		birth++;
-		productivity -= ProReproNeeded;
+        productivity -= ProReproNeeded;
         grassContent -= ContentReproNeeded;
 
     }
@@ -169,8 +171,9 @@ void Listcow::addy(int y)
     return;
 }
 
-void Listcow::clearDirection(){
+void Listcow::clearDirection(int dir){
     memset(direction,0,sizeof (direction));
+    direction[dir] = 1;
     for(int i = 0;i<4;i++){
         if(enemy[i]>0){
         direction[i]-=alert*enemy[i];

@@ -33,7 +33,7 @@ private:
     int kidhealth = 1000;//refer to health value and starvation value
     int adulthealth = 950;
     int oldhealth = 50;
-    int fullStar = 10;
+    int fullStar = 0;
     int hungryStar = 50;
 	//---------self defined value---------
 

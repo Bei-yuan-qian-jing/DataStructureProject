@@ -1,6 +1,6 @@
 #include "cow.h"
 #include<cstdio>
-
+#include<iostream>
 
 Cow::Cow(int x,int y){
 
@@ -25,11 +25,13 @@ bool Cow::live(){
     setStarvationValue(getStarvationValue()+1);
     if (specie[getX()][getY()] == -1) {//-1 represents that it has been aten by the tiger
 		specie[getX()][getY()] = 0;
+        std::cout<<"eatc"<<std::endl;
 		return false;
 	}
     // the condition that the cow dies of oldness or hunger
     if(getHealth()<=0||getStarvationValue()>extreStar){
         specie[getX()][getY()]=0;
+        std::cout<<"hungc"<<std::endl;
         return false;
     }
     if(getHealth()<=oldhealth){

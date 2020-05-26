@@ -76,12 +76,11 @@ bool Tiger::eat()
 
     }
 
-    if(target != -1){
+    if(target != -1&&rand()%10<successRate[target]){
         specie[checkBoard(getX()+move1[target][0])][checkBoard(getY()+move1[target][1])]=-1;//if ate, become-1
         setStarvationValue(getStarvationValue()-40);
         set_kidstar(get_kidstar(0) - 40, 0);
         set_kidstar(get_kidstar(1) - 40, 1);
-
         return true;
 
     }
@@ -117,7 +116,7 @@ bool Tiger::update()
         i=(i-3)%8+4;
         if(i==temp)
             break;
-
+}
        if(target<0)
 	   {
 	   	/*
@@ -138,6 +137,7 @@ bool Tiger::update()
        	/*
 		within the range of view,out of the range of activities
 		*/ 
+
            if(rand()%2==0)
                moveTiger(target%2);//§move2
            else
@@ -145,7 +145,7 @@ bool Tiger::update()
        }
 
        return false;
-    }
+
 }
 
 bool Tiger::live()
@@ -213,7 +213,7 @@ bool Tiger::kidlive(int no)
 
 bool Tiger::checkkid()
 {
-    return (get_kidheal(0)>0||get_kidheal(1)>0||getSex()==1||getHealth()<10)||getStarvationValue()<20;
+    return (get_kidheal(0)>0||get_kidheal(1)>0||getSex()==1||getHealth()<10)||getStarvationValue()<30;
 }
 
 void Tiger::reproduction()
