@@ -103,6 +103,10 @@
     <font>
      <family>Book Antiqua</family>
      <pointsize>11</pointsize>
+     <weight>50</weight>
+     <italic>true</italic>
+     <bold>false</bold>
+     <kerning>false</kerning>
     </font>
    </property>
    <property name="title">
@@ -239,7 +243,7 @@
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>220</y>
+     <y>230</y>
      <width>221</width>
      <height>41</height>
     </rect>
@@ -272,16 +276,20 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>60</y>
-     <width>331</width>
-     <height>111</height>
+     <x>640</x>
+     <y>40</y>
+     <width>351</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Book Antiqua</family>
      <pointsize>11</pointsize>
+     <weight>50</weight>
+     <italic>true</italic>
+     <bold>false</bold>
+     <kerning>false</kerning>
     </font>
    </property>
    <property name="title">
@@ -291,21 +299,21 @@
     <item>
      <widget class="QLabel" name="notation_sheep">
       <property name="text">
-       <string>1,2,3 represent the kid, adult, old states of sheep</string>
+       <string>1,2,3 represent kid, adult, old states of sheep</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="notation_cow">
       <property name="text">
-       <string>4,5,6 represent the kid, adult, old states of cow </string>
+       <string>4,5,6 represent kid, adult, old states of cow </string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="notation_tiger">
       <property name="text">
-       <string>7,8 represent the male and female states of tiger</string>
+       <string>7,8 represent male and female states of tiger</string>
       </property>
      </widget>
     </item>
